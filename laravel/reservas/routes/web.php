@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Genera todas las rutas que son necesarias para el CRUD
+Route::resource('reserva','ReservasController');
