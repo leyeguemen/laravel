@@ -37,7 +37,17 @@
         <td>{{$reserva->fila_butaca}}</td>
         <td>{{$reserva->columna_butaca}}</td>
         <td>
-          <a class="btn btn-success" href="{{route('reserva.edit', $reserva->id)}}">Editar</a>         
+          <div class="col-sm-6">
+            <a class="btn btn-success" href="{{route('reserva.edit', $reserva->id)}}">Editar</a>
+          </div>
+          <div class="col-sm-6">
+            <form action="{{ route('reserva.destroy', $reserva->id) }}" method="POST" >
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+          </div>
+
         </td>
       </tr>
       @endForeach

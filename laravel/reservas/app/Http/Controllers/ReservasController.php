@@ -67,7 +67,7 @@ class ReservasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reservas  $reservas
+     * @param  $id: identificador de la reserva
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,7 +81,7 @@ class ReservasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reservas  $reservas
+     * @param  $id: identificador de la reserva
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,8 +97,6 @@ class ReservasController extends Controller
 
         Reservas::whereId($id)->update(request()->except(['_token', '_method']));
 
-        //Reservas::update($request->all());
-
         Session::flash('message', 'Reserva actualizada correctamente');
 
         return redirect()->route('reserva.index');
@@ -107,11 +105,14 @@ class ReservasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reservas  $reservas
+     * @param  $id: identificador de la reserva
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservas $reservas)
+    public function destroy($id)
     {
-        //
+
+        Reservas::whereId($id)->delete();
+        Session::flash('message','La reserva ha sido borrada  correctamente');
+        return redirect()->route('reserva.index');
     }
 }
