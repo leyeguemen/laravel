@@ -13,12 +13,22 @@
         <strong>Success!</strong> {{ Session::get('message') }} </div>
     @endif
 
+    @if (Session::has('messageerror'))
+        <div class="clear-fix" ></div>
+        <br/>
+        <div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span></button> 
+        <strong>Error!</strong> {{ Session::get('messageerror') }} </div>
+    @endif
+
     <form action="{{ route('reserva.store') }}" method="POST">
         @csrf
 
         <div class="panel panel-primary">
             <div class="panel-heading">Datos Usuario</div>
             <div class="panel-body">
+               
                 <div class="col-sm-12">
                     <div class="form-group">
                         <strong>Nombres usuario:</strong>

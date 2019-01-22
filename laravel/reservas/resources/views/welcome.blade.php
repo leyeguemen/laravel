@@ -18,10 +18,11 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+      <h1>SiSTEMA DE RESERVAS</h1>
 
-    
-
+      <a class="btn btn-info" href="{{route('reserva.index')}}">Reservar</a>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

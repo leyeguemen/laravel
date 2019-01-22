@@ -13,6 +13,15 @@
         <strong>Success!</strong> {{ Session::get('message') }} </div>
     @endif
 
+    @if (Session::has('messageerror'))
+        <div class="clear-fix" ></div>
+        <br/>
+        <div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span></button> 
+        <strong>Error!</strong> {{ Session::get('messageerror') }} </div>
+    @endif
+
     <form action="{{ route('reserva.update', $reserva->id) }}" method="POST">
         @csrf
         @method('PUT')
