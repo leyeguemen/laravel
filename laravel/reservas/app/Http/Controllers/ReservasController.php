@@ -110,7 +110,8 @@ class ReservasController extends Controller
         ',fecha_reserva => '.$fechaReserva.
         ',numero_personas => '.$numeroPersonas.
         ',fila_butaca => '.$fila.
-        ',columna_butaca => '.$columna;       
+        ',columna_butaca => '.$columna.
+        ',accion => CREATE';       
         
         if($exists){// SI EXISTE ESCRIBIR EL REGISTRO
             Storage::append($archivoLog, $log);   
@@ -197,6 +198,37 @@ class ReservasController extends Controller
         // ------------------------------------------------
 
         Reservas::whereId($id)->update(request()->except(['_token', '_method']));
+
+        // ------------------------------------------------
+        // ARCHIVO LOG
+        // ------------------------------------------------
+        $archivoLog = 'log.txt';
+        $exists = Storage::exists($archivoLog);
+        
+        $fechaReserva = $request->input('fecha_reserva');
+        $fila = $request->input('fila_butaca');
+        $columna = $request->input('columna_butaca');
+        $nombreUsuario = $request->input('nombre_usuario');
+        $apellidoUsuario = $request->input('apellido_usuario');
+        $numeroPersonas = $request->input('numero_personas');
+
+        $log = 
+        'nombre_usuario => ' . $nombreUsuario. 
+        ',apellido_usuario => '.$apellidoUsuario.
+        ',fecha_reserva => '.$fechaReserva.
+        ',numero_personas => '.$numeroPersonas.
+        ',fila_butaca => '.$fila.
+        ',columna_butaca => '.$columna.
+        ',accion => UPDATE';       
+        
+        if($exists){// SI EXISTE ESCRIBIR EL REGISTRO
+            Storage::append($archivoLog, $log);   
+        }else{// NO EXISTE SE DEBE CREAR EL ARCHIVO Y ESCRIBIR EL REGISTRO
+            Storage::put($archivoLog, $log);
+        }
+        // ------------------------------------------------
+        // FIN ARCHIVO LOG
+        // ------------------------------------------------
 
         Session::flash('message', 'Reserva actualizada correctamente');
 
