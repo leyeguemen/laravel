@@ -9,12 +9,14 @@
     </div>
 
   @if (Session::has('message'))
+  <div class="col-sm-12" >
     <div class="clear-fix" ></div>
     <br/>
     <div class="alert alert-success alert-dismissible fade in" role="alert"> 
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">×</span></button> 
       <strong>Success!</strong> {{ Session::get('message') }} </div>
+    </div>
   @endif
 
   <div class="col-sm-12" >
